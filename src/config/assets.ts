@@ -25,7 +25,7 @@ export const ASSETS = {
     gta6Mobile: getAssetUrl('/assets/gta6postermobile.jpg'),
   },
   video: {
-    cityNeonLoop: getAssetUrl('/assets/CityNeonLoop.mp4'),
+    cityNeonLoop: getAssetUrl('/assets/CityNeonLoop.webm'),
   },
   audio: {
     bgmLoadingScreen: getAssetUrl('/audio/loadingscreenbgm.mp3'),
