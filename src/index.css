@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  body {
+    background-color: #07090e;
+    color: #f1f5f9;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism and gaming depth */
+.glass-panel {
+  background: rgba(11, 14, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-elevated {
+  background: rgba(15, 20, 32, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 42, 133, 0.25);
+}
+
+/* Custom thin and smooth scrollbar for sleek GameScope gaming feel */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 42, 133, 0.35) transparent;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 42, 133, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 42, 133, 0.7);
+}
+
+/* Scanline effect */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+  background-size: 100% 4px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* 3D Floating Reaction Physics */
+@keyframes reactionFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-25px) translateX(calc(var(--drift, 0px) * 0.3)) scale(1.05);
+  }
+  75% {
+    opacity: 0.85;
+    transform: translateY(-170px) translateX(var(--drift, 0px)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-230px) translateX(calc(var(--drift, 0px) * 1.3)) scale(0.75);
+  }
+}
+
+.animate-reaction-float {
+  animation: reactionFloat 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Subtle 200ms New Message Arrival */
+@keyframes messageEntry {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-message-entry {
+  animation: messageEntry 200ms ease-out forwards;
+}
+
+/* Like Heart Pop Animation */
+@keyframes likePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.animate-like-pop {
+  animation: likePop 220ms ease-out;
+}
+
+/* Animated Emojis Keyframes */
+@keyframes flameDance {
+  0% { transform: scale(0.96) rotate(-2deg); }
+  50% { transform: scale(1.04) rotate(2deg); }
+  100% { transform: scale(0.98) rotate(0deg); }
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.18); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+@keyframes laughRock {
+  0% { transform: rotate(-8deg) scale(0.96); }
+  50% { transform: rotate(8deg) scale(1.06); }
+  100% { transform: rotate(-8deg) scale(0.96); }
+}
+
+@keyframes shockShake {
+  0% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-2px) scale(1.06); }
+  50% { transform: translateY(1px) scale(0.98); }
+  75% { transform: translateY(-1px) scale(1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes skullGlitch {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes clapBounce {
+  0% { transform: scale(0.92); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(0.92); }
+}
+
+@keyframes lightningFlash {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+@keyframes partySpin {
+  0% { transform: rotate(-6deg) scale(0.96); }
+  50% { transform: rotate(10deg) scale(1.12); }
+  100% { transform: rotate(-6deg) scale(0.96); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-1,
+  .animate-ambient-2,
+  .animate-ambient-3,
+  .animate-reaction-float,
+  .animate-message-entry,
+  .animate-like-pop,
+  [class*="animate-\[flameDance"],
+  [class*="animate-\[heartPulse"],
+  [class*="animate-\[laughRock"],
+  [class*="animate-\[shockShake"],
+  [class*="animate-\[skullGlitch"],
+  [class*="animate-\[clapBounce"],
+  [class*="animate-\[lightningFlash"],
+  [class*="animate-\[partySpin"] {
+    animation: none !important;
+  }
+}
