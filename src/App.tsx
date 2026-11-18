@@ -69,6 +69,23 @@ export const App: React.FC = () => {
     }
   }, []);
 
+  // Synchronize route: Ensure whole GTA GameScope page opens at /gtavi
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const syncRoute = () => {
+      const pathname = window.location.pathname;
+      if (pathname !== '/gtavi') {
+        const target = '/gtavi' + window.location.search + window.location.hash;
+        window.history.replaceState(null, '', target);
+      }
+    };
+
+    syncRoute();
+    window.addEventListener('popstate', syncRoute);
+    return () => window.removeEventListener('popstate', syncRoute);
+  }, []);
+
   // Arcade Embedded State
   const [isArcadeActive, setIsArcadeActive] = useState(false);
   const [, setArcadeHighScore] = useState(0);
@@ -329,7 +346,7 @@ export const App: React.FC = () => {
       {/* 2. Top Navigation Bar */}
       <Navbar
         currentChannelTitle="GRAND THEFT AUTO VI // PREMIERE LIVE STREAM"
-        gameSlug="gta-vi"
+        gameSlug="gtavi"
         streamState={streamState}
         onOpenArcade={handleOpenArcade}
       />

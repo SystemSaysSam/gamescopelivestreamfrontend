@@ -26,7 +26,7 @@ self.addEventListener('push', (event) => {
     icon: '/assets/gta6poster.jpg',
     badge: '/favicon.svg',
     tag: `gamescope-${Date.now()}`,
-    url: '/',
+    url: '/gtavi',
     type: 'important'
   };
 
@@ -49,7 +49,7 @@ self.addEventListener('push', (event) => {
     vibrate: [200, 100, 200, 100, 200],
     timestamp: Date.now(),
     data: {
-      url: data.url || '/',
+      url: data.url || '/gtavi',
       tag: data.tag,
       type: data.type
     },
@@ -79,7 +79,7 @@ self.addEventListener('notificationclick', (event) => {
     return;
   }
 
-  const targetUrl = event.notification.data?.url || '/';
+  const targetUrl = event.notification.data?.url || '/gtavi';
 
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {

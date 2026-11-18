@@ -55,6 +55,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const handleLogoClick = () => {
     setLogoClicked(true);
     setTimeout(() => setLogoClicked(false), 400);
+    if (typeof window !== 'undefined' && window.location.pathname !== '/gtavi') {
+      window.history.pushState(null, '', '/gtavi');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
