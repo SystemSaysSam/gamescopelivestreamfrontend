@@ -154,6 +154,18 @@ export const App: React.FC = () => {
       setAdminPinnedComment(pinnedComment);
     });
 
+    const unsubVisitors = socket.on('event:active_visitors', (payload: { activeVisitors?: number }) => {
+      if (typeof payload?.activeVisitors === 'number') {
+        setActiveVisitors(payload.activeVisitors);
+      }
+    });
+
+    const unsubAnalyticsUsers = socket.on('analytics:active_users', (payload: { activeVisitors?: number }) => {
+      if (typeof payload?.activeVisitors === 'number') {
+        setActiveVisitors(payload.activeVisitors);
+      }
+    });
+
     const unsubPollCreated = socket.on('poll:created', (poll: LivePoll) => {
       setActivePoll(poll);
     });
@@ -187,6 +199,8 @@ export const App: React.FC = () => {
       unsubPollClosed();
       unsubPollRemoved();
       unsubNotif();
+      unsubVisitors();
+      unsubAnalyticsUsers();
     };
   }, []);
 
